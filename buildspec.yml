@@ -19,7 +19,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push public.ecr.aws/d5n5m2p7/my-app-docker-test-ecr:latest public.ecr.aws/d5n5m2p7/my-app-docker-test-ecr:latest 
+      - docker push public.ecr.aws/d5n5m2p7/my-app-docker-test-ecr:latest
       - echo "docker push ${REPOSITORY_URI}:latest"
       - printenv
       - docker push $REPOSITORY_URI:$IMAGE_TAG
