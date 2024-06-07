@@ -14,12 +14,12 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:latest .
-      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+      - docker tag 925413096657.dkr.ecr.ap-south-1.amazonaws.com/my-app-docker-test-ecr:latest public.ecr.aws/d5n5m2p7/my-app-docker-test-ecr:latest 
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - docker push $REPOSITORY_URI:latest
+      - docker push public.ecr.aws/d5n5m2p7/my-app-docker-test-ecr:latest public.ecr.aws/d5n5m2p7/my-app-docker-test-ecr:latest 
       - echo "docker push ${REPOSITORY_URI}:latest"
       - printenv
       - docker push $REPOSITORY_URI:$IMAGE_TAG
