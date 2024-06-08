@@ -8,24 +8,24 @@ env:
 phases:
   install:
     commands:
-      # - echo "$DOCKERHUB_USERNAME"
+      - echo "$DOCKERHUB_USERNAME"
       - echo "installing Docker compose"
-      # - sudo apt install docker-compose
-      # - docker-compose --version
+      - sudo apt install docker-compose
+      - docker-compose --version
   pre_build:
     commands:
       - echo "Loggin in to Docker hub"
-      # - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      # - export COMMIT_HASH=$(git rev-parse -short HEAD)
+      - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      - export COMMIT_HASH=$(git rev-parse -short HEAD)
   build:
     commands:
       - echo "Building Docker image"
-      # - docker-compose build
+      - docker-compose build
   post_build:
     commands:
       - echo "Taggin Docker images"
-      # - docker tag service-01:latest "$DOCKERHUB_USERNAME/service-01:$COMMIT_HASH"
-      # - echo "Pussing docker images to docker hub"
-      # - docker push "$DOCKERHUB_USERNAME/service-01:$COMMIT_HASH"
+      - docker tag service-01:latest "$DOCKERHUB_USERNAME/service-01:$COMMIT_HASH"
+      - echo "Pussing docker images to docker hub"
+      - docker push "$DOCKERHUB_USERNAME/service-01:$COMMIT_HASH"
 
 
