@@ -22,10 +22,10 @@ phases:
   build:
     commands:
       - echo "Building Docker image"
-      - docker-compose build
+      # - docker-compose build
   post_build:
     commands:
       - echo "Tagging Docker images"
-      - docker tag service-01:latest "$DOCKERHUB_USERNAME/dg-service-01:$COMMIT_HASH"
-      - echo "Pushing Docker images to Docker Hub"
-      - docker push "$DOCKERHUB_USERNAME/dg-service-01:$COMMIT_HASH"
+      # - docker tag service-01:latest "$DOCKERHUB_USERNAME/dg-service-01:$COMMIT_HASH"
+      # - echo "Pushing Docker images to Docker Hub"
+      # - docker push "$DOCKERHUB_USERNAME/dg-service-01:$COMMIT_HASH"
