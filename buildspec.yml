@@ -2,8 +2,8 @@ version: 0.2
 
 env:
   secrets-manager:
-    DOCKERHUB_USERNAME: "/dg/cicd/dockerhub:username"
-    DOCKERHUB_PASSWORD: "/dg/cicd/dockerhub:password"
+    DOCKERHUB_USERNAME: "dg/cicd/dockerhub:username"
+    DOCKERHUB_PASSWORD: "dg/cicd/dockerhub:password"
 
 phases:
   install:
