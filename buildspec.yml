@@ -17,7 +17,8 @@ phases:
     commands:
       - echo "Logging in to Docker Hub"
       - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      - export COMMIT_HASH=$(git rev-parse --short HEAD)
+      - export COMMIT_HASH=$(CODEBUILD_RESOLVED_SOURCE_VERSION)
+      - echo $COMMIT_HASH
   build:
     commands:
       - echo "Building Docker image"
