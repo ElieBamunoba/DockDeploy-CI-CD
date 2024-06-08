@@ -9,23 +9,26 @@ phases:
   install:
     commands:
       - echo "$DOCKERHUB_USERNAME"
-      - echo "installing Docker compose"
-      - sudo apt install docker-compose
+      - echo "Installing Docker Compose"
+      # Download the current stable release of Docker Compose
+      - sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      # Apply executable permissions to the binary
+      - sudo chmod +x /usr/local/bin/docker-compose
       - docker-compose --version
   pre_build:
     commands:
-      - echo "Loggin in to Docker hub"
+      - echo "Logging in to Docker Hub"
       - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
-      - export COMMIT_HASH=$(git rev-parse -short HEAD)
+      - export COMMIT_HASH=$(git rev-parse --short HEAD)
   build:
     commands:
       - echo "Building Docker image"
       - docker-compose build
   post_build:
     commands:
-      - echo "Taggin Docker images"
+      - echo "Tagging Docker images"
       - docker tag service-01:latest "$DOCKERHUB_USERNAME/service-01:$COMMIT_HASH"
-      - echo "Pussing docker images to docker hub"
+      - echo "Pushing Docker images to Docker Hub"
       - docker push "$DOCKERHUB_USERNAME/service-01:$COMMIT_HASH"
 
 
